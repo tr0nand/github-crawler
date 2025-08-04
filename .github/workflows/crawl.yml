@@ -1,0 +1,50 @@
+name: github-crawler-stars
+on: [push, workflow_dispatch]
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install poetry && poetry install --no-root
+
+      - name: Init schema
+        run: |
+          psql -h localhost -U postgres -f schema.sql
+          psql -h localhost -U postgres -f crawl_runs.sql
+        env:
+          PGPASSWORD: postgres
+
+      - name: Crawl stars
+        run: poetry run python crawl.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+
+      - name: Dump table to CSV
+        run: |
+          psql -h localhost -U postgres -c "\copy (SELECT * FROM repositories ORDER BY stars DESC) TO 'repos.csv' CSV HEADER"
+        env:
+          PGPASSWORD: postgres
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repos-csv
+          path: repos.csv
