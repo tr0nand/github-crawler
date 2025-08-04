@@ -99,7 +99,7 @@ The crawler uses a sophisticated multi-dimensional query generation system:
 - Prevents duplicate queries through combination tracking
 - Provides detailed coverage reports
 
-See [query_builder.md](query_builder.md) for a detailed explanation with examples.
+See [query_builder_logic.md](query_builder_logic.md) for a detailed explanation with examples.
 
 ## 🚦 Getting Started
 
