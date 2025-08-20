@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Config:
     """Immutable configuration settings"""
     repos_per_page: int = 100
-    target_total_repos: int = 100000
+    target_total_repos: int = 1000000
     max_pages_per_query: int = 10
     pause_between_queries: float = 0.05
     max_concurrent_queries: int = 15
