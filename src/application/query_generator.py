@@ -45,57 +45,57 @@ class QueryBuilder:
             #     "language:shell", "language:r", "language:dart"
             # )),
             
-            # Star count ranges - bucketed to avoid overlaps
-            SearchDimension("stars", (
-                "stars:0..10",      # Low popularity
-                "stars:11..50",     # Growing projects
-                "stars:51..100",    # Notable projects
-                "stars:101..500",   # Popular projects
-                "stars:501..1000",  # Very popular
-                "stars:1001..5000", # Highly popular
-                "stars:>5000"       # Extremely popular
-            )),
+            # # Star count ranges - bucketed to avoid overlaps
+            # SearchDimension("stars", (
+            #     "stars:0..10",      # Low popularity
+            #     "stars:11..50",     # Growing projects
+            #     "stars:51..100",    # Notable projects
+            #     "stars:101..500",   # Popular projects
+            #     "stars:501..1000",  # Very popular
+            #     "stars:1001..5000", # Highly popular
+            #     "stars:>5000"       # Extremely popular
+            # )),
             
             # Creation date ranges
             SearchDimension("created", (
                 # "created:2024-01-01..2024-03-31",  # Q1 2024
                 # "created:2024-04-01..2024-06-30",  # Q2 2024
                 # "created:2024-07-01..2024-09-30",  # Q3 2024
-                # "created:2024-10-01..2024-12-31",  # Q4 2024
+                "created:2024-10-01..2024-12-31",  # Q4 2024
                 # "created:2023-01-01..2023-12-31",  # All of 2023
                 # "created:<2023-01-01"              # Before 2023
-                "created:2011-01-01..2011-03-31",  # Q1 2011
-                "created:2011-04-01..2011-06-31",  # Q2 2011
-                "created:2011-07-01..2011-09-31",  # Q3 2011
-                "created:2011-10-01..2011-23-31",  # Q4 2011
-                "created:2012-01-01..2012-03-31",  # Q1 2012
-                "created:2012-04-01..2012-06-31",  # Q2 2012
-                "created:2012-07-01..2012-09-31",  # Q3 2012
-                "created:2012-10-01..2012-23-31",  # Q4 2012
-                "created:2013-01-01..2013-03-31",  # Q1 2013
-                "created:2013-04-01..2013-06-31",  # Q2 2013
-                "created:2013-07-01..2013-09-31",  # Q3 2013
-                "created:2013-10-01..2013-23-31",  # Q4 2013
+                # "created:2011-01-01..2011-03-31",  # Q1 2011
+                # "created:2011-04-01..2011-06-31",  # Q2 2011
+                # "created:2011-07-01..2011-09-31",  # Q3 2011
+                # "created:2011-10-01..2011-23-31",  # Q4 2011
+                # "created:2012-01-01..2012-03-31",  # Q1 2012
+                # "created:2012-04-01..2012-06-31",  # Q2 2012
+                # "created:2012-07-01..2012-09-31",  # Q3 2012
+                # "created:2012-10-01..2012-23-31",  # Q4 2012
+                # "created:2013-01-01..2013-03-31",  # Q1 2013
+                # "created:2013-04-01..2013-06-31",  # Q2 2013
+                # "created:2013-07-01..2013-09-31",  # Q3 2013
+                # "created:2013-10-01..2013-23-31",  # Q4 2013
             )),
             
-            # Repository size (in KB)
-            SearchDimension("size", (
-                "size:1..100",      # Tiny repos
-                "size:101..1000",   # Small repos
-                "size:1001..10000", # Medium repos
-                "size:>10000"       # Large repos
-            )),
+            # # Repository size (in KB)
+            # SearchDimension("size", (
+            #     "size:1..100",      # Tiny repos
+            #     "size:101..1000",   # Small repos
+            #     "size:1001..10000", # Medium repos
+            #     "size:>10000"       # Large repos
+            # )),
             
-            # Activity indicators
-            SearchDimension("activity", (
-                "forks:>5",         # Highly forked
-                "forks:1..5",       # Some forks
-                "forks:0",          # No forks
-                "issues:>10",       # Many issues
-                "issues:1..10",     # Some issues
-                "archived:false",   # Active repos
-                "archived:true"     # Archived repos
-            ))
+            # # Activity indicators
+            # SearchDimension("activity", (
+            #     "forks:>5",         # Highly forked
+            #     "forks:1..5",       # Some forks
+            #     "forks:0",          # No forks
+            #     "issues:>10",       # Many issues
+            #     "issues:1..10",     # Some issues
+            #     "archived:false",   # Active repos
+            #     "archived:true"     # Archived repos
+            # ))
         )
     
     @staticmethod
